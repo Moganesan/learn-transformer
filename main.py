@@ -18,6 +18,8 @@ decode = lambda l: "".join([itos[i] for i in l])
 # encode the entire dataset into torch.tensor
 data = torch.tensor(encode(text),dtype=torch.long)
 
+print(data.shape)
+
 # Let's split the data into train and validation sets
 n = int(0.9*len(data)) # first 90% will be train, rest val
 train_data = data[:n]
@@ -60,3 +62,4 @@ for b in range(batch_size): # batch dimension
         context = xb[b, :t+1]
         target = yb[b,t]
         print(f"when input is {context.tolist()} the target: {target}")
+print(xb) # input to the transformer
